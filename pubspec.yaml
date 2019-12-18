@@ -5,7 +5,8 @@ version: 1.0.0
 authors:
     - WiRight <ruslan.mahin1@gmail.com>
 
-description: Simple CountDown timer
+description: >
+    Simple CountDown timer. Using for create a simple timer. It's pure all
 
 homepage: https://github.com/DizoftTeam/simple_count_down
 
