@@ -34,25 +34,25 @@ class _CountdownState extends State<Countdown> {
   Timer _timer;
 
   // Current seconds
-  int _currentSeconds;
+  int _currentMicroSeconds;
 
   @override
   void initState() {
-    this._currentSeconds = widget.seconds * this.widget.interval.inMicroseconds;
+    this._currentMicroSeconds = widget.seconds * 1000000;
 
     _timer = Timer.periodic(
       this.widget.interval,
       (Timer timer) {
-        if (_currentSeconds == 0) {
+        if (_currentMicroSeconds == 0) {
           // Stop timer
           timer.cancel();
           if (this.widget.onFinished != null) {
             this.widget.onFinished(
-                _currentSeconds / this.widget.interval.inMicroseconds);
+                _currentMicroSeconds / this.widget.interval.inMicroseconds);
           }
         } else {
           setState(() {
-            _currentSeconds -= this.widget.interval.inMicroseconds;
+            _currentMicroSeconds -= this.widget.interval.inMicroseconds;
           });
         }
       },
@@ -71,5 +71,5 @@ class _CountdownState extends State<Countdown> {
   @override
   Widget build(BuildContext context) => this
       .widget
-      .build(context, _currentSeconds / this.widget.interval.inMicroseconds);
+      .build(context, _currentMicroSeconds / 1000000);
 }
