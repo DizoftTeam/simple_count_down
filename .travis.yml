@@ -6,7 +6,7 @@ dart:
 with_content_shell: false
 script:
     - flutter pub global activate coverage
-    - dartfmt -n ./lib --set-exit-if-changed
+#   - dartfmt -n ./lib --set-exit-if-changed
     - dartanalyzer --fatal-infos --fatal-warnings ./
 #   - pub run test test/rxdart_test.dart
 #   - dart --disable-service-auth-codes --enable-vm-service=8111 --pause-isolates-on-exit test/rxdart_test.dart &
