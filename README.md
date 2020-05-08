@@ -1,20 +1,25 @@
 # Simple Count Down
 
-Simple Count Down for [Flutter](http://flutter.io/)
+A highly customizable countdown widget for [Flutter](http://flutter.dev/), with support for custom styling, intervals, and onFinished callbacks.
 
-Using for create a simple timer
 
 # How to use
 
 ```dart
-CountDown(
-    seconds: 100,
-    onTimer: () {
-        // Make some logic
-        setState(() {
-            // Such like hide timer and show other widget
-            _showTimer = false;
-        });
-    },
-),
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Countdown(
+      seconds: 20,
+      build: (_, double time) => Text(time.toString()),
+      interval: Duration(milliseconds: 100),
+      onFinished: () {
+        print('Timer is done!');
+      },
+    );
+  }
+}
 ```
+
+# Installing
+Go to the [package](https://pub.dev/packages/timer_count_down) on pub.dev, check the latest version, and add it to your `pubspec.yaml` file in the dependency section. 
