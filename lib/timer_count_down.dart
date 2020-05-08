@@ -12,7 +12,7 @@ class Countdown extends StatefulWidget {
   final Widget Function(BuildContext, double) build;
 
   // Called when finished
-  final Function(double) onFinished;
+  final Function onFinished;
 
   // Build interval
   final Duration interval;
@@ -47,8 +47,7 @@ class _CountdownState extends State<Countdown> {
           // Stop timer
           timer.cancel();
           if (this.widget.onFinished != null) {
-            this.widget.onFinished(
-                _currentMicroSeconds / this.widget.interval.inMicroseconds);
+            this.widget.onFinished();
           }
         } else {
           setState(() {
@@ -69,7 +68,7 @@ class _CountdownState extends State<Countdown> {
   }
 
   @override
-  Widget build(BuildContext context) => this
-      .widget
-      .build(context, _currentMicroSeconds / 1000000);
+  Widget build(BuildContext context) => this.widget.build(
+    context,
+    _currentMicroSeconds / 1000000);
 }
