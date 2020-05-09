@@ -1,73 +1,57 @@
-// Dart libs
 import 'dart:async';
-
-// Flutter libs
 import 'package:flutter/widgets.dart';
 
 ///
-/// Simple count down (timer)
+/// Simple countdown timer.
 ///
-class CountDown extends StatefulWidget {
-  // Seconds
+class Countdown extends StatefulWidget {
+  // Length of the timer
   final int seconds;
 
-  // Callback when timer is done
-  final VoidCallback onTimer;
+  // Build method for the timer
+  final Widget Function(BuildContext, double) build;
 
-  // Duration
-  final Duration duration;
+  // Called when finished
+  final Function onFinished;
 
-  // Style of text
-  final TextStyle style;
+  // Build interval
+  final Duration interval;
 
-  ///
-  /// Simple count down (timer)
-  ///
-  CountDown({
+  Countdown({
     Key key,
     @required this.seconds,
-    this.onTimer,
-    this.duration = const Duration(seconds: 1),
-    this.style = const TextStyle(),
+    @required this.build,
+    this.onFinished,
+    this.interval = const Duration(seconds: 1),
   }) : super(key: key);
 
   @override
-  _CountDownState createState() => _CountDownState();
+  _CountdownState createState() => _CountdownState();
 }
 
-///
-/// Count down state
-///
-class _CountDownState extends State<CountDown> {
+class _CountdownState extends State<Countdown> {
   // Timer
   Timer _timer;
 
   // Current seconds
-  int _currentSeconds;
+  int _currentMicroSeconds;
 
   @override
   void initState() {
-    _currentSeconds = widget.seconds;
+    this._currentMicroSeconds = widget.seconds * 1000000;
 
     _timer = Timer.periodic(
-      widget.duration,
-      // Run callback with custom [duration]
+      this.widget.interval,
       (Timer timer) {
-        if (_currentSeconds < 1) {
-          // In this case timer whill be done
-          // Thas why we do not need check it on build function
-
+        if (_currentMicroSeconds == 0) {
           // Stop timer
           timer.cancel();
-
-          // Call callback if not null
-          if (widget.onTimer != null) {
-            widget.onTimer();
+          if (this.widget.onFinished != null) {
+            this.widget.onFinished();
           }
         } else {
           setState(() {
-            // TIP: _currentSeconds -= 1 make insane!
-            _currentSeconds = _currentSeconds - 1;
+            _currentMicroSeconds -= this.widget.interval.inMicroseconds;
           });
         }
       },
@@ -84,31 +68,7 @@ class _CountDownState extends State<CountDown> {
   }
 
   @override
-  Widget build(BuildContext context) => _getRoot(context);
-
-  ///
-  /// Build root of widget
-  ///
-  Widget _getRoot(BuildContext context) {
-    return Container(
-      child: _buildCountDown(context),
-    );
-  }
-
-  ///
-  /// Build count down timer
-  ///
-  Text _buildCountDown(BuildContext context) {
-    int minutes = (_currentSeconds / 60).floor();
-    String minutesString = minutes.toString().padLeft(2, '0');
-
-    int tempSeconds = (_currentSeconds - (minutes * 60));
-    int seconds = tempSeconds > 60 ? (tempSeconds / 60).floor() : tempSeconds;
-    String secondsString = seconds.toString().padLeft(2, '0');
-
-    return Text(
-      '$minutesString:$secondsString',
-      style: widget.style,
-    );
-  }
+  Widget build(BuildContext context) => this.widget.build(
+    context,
+    _currentMicroSeconds / 1000000);
 }
