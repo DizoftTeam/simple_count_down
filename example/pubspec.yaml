@@ -11,7 +11,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  timer_count_down: ^1.0.0
+  timer_count_down:
+      path: '../'
 
 dev_dependencies:
   flutter_test:

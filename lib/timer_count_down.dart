@@ -1,5 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/widgets.dart';
+
+import 'package:timer_count_down/timer_controller.dart';
 
 ///
 /// Simple countdown timer.
@@ -17,18 +20,25 @@ class Countdown extends StatefulWidget {
   // Build interval
   final Duration interval;
 
+  // Controller
+  final CountdownController controller;
+
   Countdown({
     Key key,
     @required this.seconds,
     @required this.build,
-    this.onFinished,
     this.interval = const Duration(seconds: 1),
+    this.onFinished,
+    this.controller,
   }) : super(key: key);
 
   @override
   _CountdownState createState() => _CountdownState();
 }
 
+///
+/// State of timer
+///
 class _CountdownState extends State<Countdown> {
   // Timer
   Timer _timer;
@@ -38,37 +48,72 @@ class _CountdownState extends State<Countdown> {
 
   @override
   void initState() {
-    this._currentMicroSeconds = widget.seconds * 1000000;
+    _currentMicroSeconds = widget.seconds * 1000000;
 
-    _timer = Timer.periodic(
-      this.widget.interval,
-      (Timer timer) {
-        if (_currentMicroSeconds == 0) {
-          // Stop timer
-          timer.cancel();
-          if (this.widget.onFinished != null) {
-            this.widget.onFinished();
-          }
-        } else {
-          setState(() {
-            _currentMicroSeconds -= this.widget.interval.inMicroseconds;
-          });
-        }
-      },
-    );
+    widget.controller?.setOnPause(_onTimerPaused);
+    widget.controller?.setOnResume(_onTimerResumed);
+
+    _startTimer();
 
     super.initState();
   }
 
   @override
+  Widget build(BuildContext context) {
+    return widget.build(
+      context,
+      _currentMicroSeconds / 1000000,
+    );
+  }
+
+  @override
   void dispose() {
-    _timer.cancel();
+    if (_timer?.isActive == true) {
+      _timer?.cancel();
+    }
 
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) => this.widget.build(
-    context,
-    _currentMicroSeconds / 1000000);
+  ///
+  /// Then timer paused
+  ///
+  void _onTimerPaused() {
+    if (_timer?.isActive == true) {
+      _timer?.cancel();
+    }
+  }
+
+  ///
+  /// Then timer resumed
+  ///
+  void _onTimerResumed() {
+    _startTimer();
+  }
+
+  void _startTimer() {
+    if (_timer?.isActive == true) {
+      _timer.cancel();
+    }
+
+    if (_currentMicroSeconds != 0) {
+      _timer = Timer.periodic(
+        widget.interval,
+        (Timer timer) {
+          if (_currentMicroSeconds == 0) {
+            timer.cancel();
+
+            if (widget.onFinished != null) {
+              widget.onFinished();
+            }
+          } else {
+            setState(() {
+              _currentMicroSeconds =
+                  _currentMicroSeconds - widget.interval.inMicroseconds;
+            });
+          }
+        },
+      );
+    }
+  }
 }
