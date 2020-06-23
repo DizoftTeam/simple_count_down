@@ -10,6 +10,12 @@ class CountdownController {
   // Called when called `resume` method
   VoidCallback onResume;
 
+  // called to restart the timer
+  VoidCallback onRestart;
+
+  //is timer active
+  bool isCompleted = false;
+
   ///
   /// Constructor
   ///
@@ -39,5 +45,18 @@ class CountdownController {
 
   setOnResume(VoidCallback onResume) {
     this.onResume = onResume;
+  }
+
+  ///
+  /// restart timer from cold
+  ///
+  restart() {
+    if (this.onRestart != null) {
+      this.onRestart();
+    }
+  }
+
+  serOnRestart(VoidCallback onRestart) {
+    this.onRestart = onRestart;
   }
 }
