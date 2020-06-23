@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:elhariry/Widgets/Timer/timer_controller.dart';
+import 'package:timer_count_down/timer_controller.dart';
 import 'package:flutter/widgets.dart';
 
 ///
