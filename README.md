@@ -12,7 +12,7 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Countdown(
       seconds: 20,
-      build: (_, double time) => Text(time.toString()),
+      build: (context, double time) => Text(time.toString()),
       interval: Duration(milliseconds: 100),
       onFinished: () {
         print('Timer is done!');
@@ -22,7 +22,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-For pause you need to use `CountdownController`. For example check [example as is](./example)
+For pause, restart and resume you need to use `CountdownController`. For example check [example as is](./example)
 
 ## Installing
 
