@@ -61,7 +61,7 @@ class CountdownController {
     }
   }
 
-  serOnRestart(VoidCallback onRestart) {
+  setOnRestart(VoidCallback onRestart) {
     this.onRestart = onRestart;
   }
 }

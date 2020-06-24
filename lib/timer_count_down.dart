@@ -51,7 +51,7 @@ class _CountdownState extends State<Countdown> {
 
     widget.controller?.setOnPause(_onTimerPaused);
     widget.controller?.setOnResume(_onTimerResumed);
-    widget.controller?.serOnRestart(_onTimerRestart);
+    widget.controller?.setOnRestart(_onTimerRestart);
     widget.controller?.isCompleted = false;
 
     _startTimer();
