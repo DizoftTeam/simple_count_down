@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.0.4] - June 26th, 2020
+
+- Pull Requests
+  - [#8](https://github.com/DizoftTeam/simple_count_down/pull/8) : Small code fixes by style guide (need create)
+  - [#7](https://github.com/DizoftTeam/simple_count_down/pull/7) : adding new timer restart functionality (by @AhmedAbouelkher)
+
 ## [1.0.3] - May 31th, 2020
 
 - Fixes issues

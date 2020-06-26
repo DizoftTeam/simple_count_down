@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final IconData buttonIcon = _isRestart
         ? Icons.refresh
         : (_isPause ? Icons.pause : Icons.play_arrow);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -74,7 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
           interval: Duration(milliseconds: 100),
           onFinished: () {
             print('Timer is done!');
-            setState(() => _isRestart = true);
+
+            setState(() {
+              _isRestart = true;
+            });
           },
         ),
       ),
@@ -83,13 +87,19 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           final isCompleted = controller.isCompleted;
           isCompleted ? controller.restart() : controller.pause();
+
           if (!isCompleted && !_isPause) {
             controller.resume();
           }
+
           if (isCompleted) {
-            setState(() => _isRestart = false);
+            setState(() {
+              _isRestart = false;
+            });
           } else {
-            setState(() => _isPause = !_isPause);
+            setState(() {
+              _isPause = !_isPause;
+            });
           }
         },
       ),

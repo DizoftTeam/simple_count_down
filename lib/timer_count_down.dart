@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:timer_count_down/timer_controller.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:timer_count_down/timer_controller.dart';
 
 ///
 /// Simple countdown timer.
@@ -39,6 +40,9 @@ class Countdown extends StatefulWidget {
 /// State of timer
 ///
 class _CountdownState extends State<Countdown> {
+  // Multiplier of secconds
+  final int _secondsFactor = 1000000;
+
   // Timer
   Timer _timer;
 
@@ -47,7 +51,7 @@ class _CountdownState extends State<Countdown> {
 
   @override
   void initState() {
-    _currentMicroSeconds = widget.seconds * 1000000;
+    _currentMicroSeconds = widget.seconds * _secondsFactor;
 
     widget.controller?.setOnPause(_onTimerPaused);
     widget.controller?.setOnResume(_onTimerResumed);
@@ -63,7 +67,7 @@ class _CountdownState extends State<Countdown> {
   Widget build(BuildContext context) {
     return widget.build(
       context,
-      _currentMicroSeconds / 1000000,
+      _currentMicroSeconds / _secondsFactor,
     );
   }
 
@@ -92,15 +96,26 @@ class _CountdownState extends State<Countdown> {
     _startTimer();
   }
 
+  ///
+  /// Then timer restarted
+  ///
   void _onTimerRestart() {
-    setState(() => _currentMicroSeconds = widget.seconds * 1000000);
     widget.controller?.isCompleted = false;
+
+    setState(() {
+      _currentMicroSeconds = widget.seconds * _secondsFactor;
+    });
+
     _startTimer();
   }
 
+  ///
+  /// Start timer
+  ///
   void _startTimer() {
     if (_timer?.isActive == true) {
       _timer.cancel();
+
       widget.controller?.isCompleted = true;
     }
 
@@ -114,6 +129,7 @@ class _CountdownState extends State<Countdown> {
             if (widget.onFinished != null) {
               widget.onFinished();
             }
+
             widget.controller?.isCompleted = true;
           } else {
             setState(() {
