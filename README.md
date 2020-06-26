@@ -1,10 +1,14 @@
 # Simple Count Down
 
-![](./assets/version_badge.svg)
+![](https://badges.fyi/github/latest-tag/DizoftTeam/simple_count_down)
+![](https://badges.fyi/github/stars/DizoftTeam/simple_count_down)
+![](https://badges.fyi/github/license/DizoftTeam/simple_count_down)
 
 A highly customizable countdown widget for [Flutter](http://flutter.dev/), with support for custom styling, intervals, and onFinished callbacks.
 
 ## How to use
+
+Simple example below. For full example check `example` folder.
 
 ```dart
 class MyWidget extends StatelessWidget {
@@ -12,7 +16,7 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Countdown(
       seconds: 20,
-      build: (context, double time) => Text(time.toString()),
+      build: (BuildContext context, double time) => Text(time.toString()),
       interval: Duration(milliseconds: 100),
       onFinished: () {
         print('Timer is done!');
