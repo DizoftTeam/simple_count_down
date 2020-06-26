@@ -40,14 +40,14 @@ class Countdown extends StatefulWidget {
 /// State of timer
 ///
 class _CountdownState extends State<Countdown> {
+  // Multiplier of secconds
+  final int _secondsFactor = 1000000;
+
   // Timer
   Timer _timer;
 
   // Current seconds
   int _currentMicroSeconds;
-
-  // Multiplier of secconds
-  const int _secondsFactor = 1000000;
 
   @override
   void initState() {
@@ -103,7 +103,7 @@ class _CountdownState extends State<Countdown> {
     widget.controller?.isCompleted = false;
 
     setState(() {
-      _currentMicroSeconds = widget.seconds * _secondsFactor
+      _currentMicroSeconds = widget.seconds * _secondsFactor;
     });
 
     _startTimer();

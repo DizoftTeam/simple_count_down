@@ -1,6 +1,6 @@
 name: timer_count_down
 
-version: 1.0.3
+version: 1.0.4
 
 description: >
     Simple CountDown timer. Using for create a simple timer. It's pure all
