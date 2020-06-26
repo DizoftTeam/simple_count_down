@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
-
 import 'package:timer_count_down/timer_controller.dart';
+import 'package:flutter/widgets.dart';
 
 ///
 /// Simple countdown timer.
@@ -52,6 +51,8 @@ class _CountdownState extends State<Countdown> {
 
     widget.controller?.setOnPause(_onTimerPaused);
     widget.controller?.setOnResume(_onTimerResumed);
+    widget.controller?.setOnRestart(_onTimerRestart);
+    widget.controller?.isCompleted = false;
 
     _startTimer();
 
@@ -91,9 +92,16 @@ class _CountdownState extends State<Countdown> {
     _startTimer();
   }
 
+  void _onTimerRestart() {
+    setState(() => _currentMicroSeconds = widget.seconds * 1000000);
+    widget.controller?.isCompleted = false;
+    _startTimer();
+  }
+
   void _startTimer() {
     if (_timer?.isActive == true) {
       _timer.cancel();
+      widget.controller?.isCompleted = true;
     }
 
     if (_currentMicroSeconds != 0) {
@@ -106,6 +114,7 @@ class _CountdownState extends State<Countdown> {
             if (widget.onFinished != null) {
               widget.onFinished();
             }
+            widget.controller?.isCompleted = true;
           } else {
             setState(() {
               _currentMicroSeconds =

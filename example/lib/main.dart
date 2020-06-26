@@ -48,9 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
   final CountdownController controller = CountdownController();
 
   bool _isPause = true;
+  bool _isRestart = false;
 
   @override
   Widget build(BuildContext context) {
+    final IconData buttonIcon = _isRestart
+        ? Icons.refresh
+        : (_isPause ? Icons.pause : Icons.play_arrow);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -60,30 +64,33 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Countdown(
           controller: controller,
-          seconds: 20,
-          build: (_, double time) => Text(time.toString()),
-          interval: Duration(
-            milliseconds: 100,
+          seconds: 5,
+          build: (_, double time) => Text(
+            time.toString(),
+            style: TextStyle(
+              fontSize: 100,
+            ),
           ),
+          interval: Duration(milliseconds: 100),
           onFinished: () {
             print('Timer is done!');
+            setState(() => _isRestart = true);
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          _isPause ? Icons.pause : Icons.play_arrow,
-        ),
+        child: Icon(buttonIcon),
         onPressed: () {
-          if (_isPause) {
-            controller.pause();
-          } else {
+          final isCompleted = controller.isCompleted;
+          isCompleted ? controller.restart() : controller.pause();
+          if (!isCompleted && !_isPause) {
             controller.resume();
           }
-
-          setState(() {
-            _isPause = !_isPause;
-          });
+          if (isCompleted) {
+            setState(() => _isRestart = false);
+          } else {
+            setState(() => _isPause = !_isPause);
+          }
         },
       ),
     );

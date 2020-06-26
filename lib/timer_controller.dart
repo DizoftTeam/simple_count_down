@@ -10,6 +10,17 @@ class CountdownController {
   // Called when called `resume` method
   VoidCallback onResume;
 
+  // called when restarting the timer
+  VoidCallback onRestart;
+
+  ///Checks if the timer is running and enables you to take actions according to that.
+  ///if the timer is still active, `isCompleted` returns `false` and vice versa.
+  ///for example:
+  ///``` dart
+  ///_controller.isCompleted ? _controller.restart() : _controller.pause();
+  ///```
+  bool isCompleted;
+
   ///
   /// Constructor
   ///
@@ -39,5 +50,18 @@ class CountdownController {
 
   setOnResume(VoidCallback onResume) {
     this.onResume = onResume;
+  }
+
+  ///
+  /// restart timer from cold
+  ///
+  restart() {
+    if (this.onRestart != null) {
+      this.onRestart();
+    }
+  }
+
+  setOnRestart(VoidCallback onRestart) {
+    this.onRestart = onRestart;
   }
 }
