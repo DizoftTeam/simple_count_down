@@ -4,7 +4,7 @@
 ![](https://badges.fyi/github/stars/DizoftTeam/simple_count_down)
 ![](https://badges.fyi/github/license/DizoftTeam/simple_count_down)
 
-A highly customizable countdown widget for [Flutter](http://flutter.dev/), with support for custom styling, intervals, and onFinished callbacks.
+A highly customizable countdown widget for [Flutter](https://flutter.dev/), with support for custom styling, intervals, and onFinished callbacks.
 
 ## How to use
 
