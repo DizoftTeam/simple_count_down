@@ -63,23 +63,53 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: Countdown(
-          controller: controller,
-          seconds: 5,
-          build: (_, double time) => Text(
-            time.toString(),
-            style: TextStyle(
-              fontSize: 100,
-            ),
-          ),
-          interval: Duration(milliseconds: 100),
-          onFinished: () {
-            print('Timer is done!');
+        child: Column(
+          children: <Widget>[
+            Countdown(
+              controller: controller,
+              seconds: 5,
+              build: (_, double time) => Text(
+                time.toString(),
+                style: TextStyle(
+                  fontSize: 100,
+                ),
+              ),
+              interval: Duration(milliseconds: 100),
+              onFinished: () {
+                print('Timer is done!');
 
-            setState(() {
-              _isRestart = true;
-            });
-          },
+                setState(() {
+                  _isRestart = true;
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text('Set new Value'),
+              onPressed: () {
+                print('show Dialog');
+                Scaffold.of(context).showBottomSheet(
+                  (BuildContext context) {
+                    return Container(
+                      height: 300,
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            const Text('Enter new timer value'),
+                            ElevatedButton(
+                              child: Text('Apply'),
+                              onPressed: () {
+                                print('New Button');
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,7 +1,10 @@
+// Dart libs
 import 'dart:async';
 
+// Flutter libs
 import 'package:flutter/widgets.dart';
 
+// Local deps
 import 'package:timer_count_down/timer_controller.dart';
 
 ///
@@ -56,6 +59,8 @@ class _CountdownState extends State<Countdown> {
     widget.controller?.setOnPause(_onTimerPaused);
     widget.controller?.setOnResume(_onTimerResumed);
     widget.controller?.setOnRestart(_onTimerRestart);
+    widget.controller?.setOnSetTimer(_onSetTimer);
+
     widget.controller?.isCompleted = false;
 
     _startTimer();
@@ -107,6 +112,14 @@ class _CountdownState extends State<Countdown> {
     });
 
     _startTimer();
+  }
+
+  void _onSetTimer(int seconds) {
+    print('Timer set to $seconds');
+
+    setState(() {
+      _currentMicroSeconds = seconds * _secondsFactor;
+    });
   }
 
   ///
