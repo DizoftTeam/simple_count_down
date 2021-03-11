@@ -45,7 +45,7 @@ class MyHomePage extends StatefulWidget {
 /// Page state
 ///
 class _MyHomePageState extends State<MyHomePage> {
-  final CountdownController controller = CountdownController();
+  final CountdownController _controller = CountdownController();
 
   bool _isPause = true;
   bool _isRestart = false;
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Countdown(
-              controller: controller,
+              controller: _controller,
               seconds: 5,
               build: (_, double time) => Text(
                 time.toString(),
@@ -115,11 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(buttonIcon),
         onPressed: () {
-          final isCompleted = controller.isCompleted;
-          isCompleted ? controller.restart() : controller.pause();
+          final isCompleted = _controller.isCompleted;
+          isCompleted ? _controller.restart() : _controller.pause();
 
           if (!isCompleted && !_isPause) {
-            controller.resume();
+            _controller.resume();
           }
 
           if (isCompleted) {
