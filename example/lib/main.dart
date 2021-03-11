@@ -45,7 +45,7 @@ class MyHomePage extends StatefulWidget {
 /// Page state
 ///
 class _MyHomePageState extends State<MyHomePage> {
-  final CountdownController controller = CountdownController();
+  final CountdownController _controller = CountdownController();
 
   bool _isPause = true;
   bool _isRestart = false;
@@ -63,33 +63,63 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: Countdown(
-          controller: controller,
-          seconds: 5,
-          build: (_, double time) => Text(
-            time.toString(),
-            style: TextStyle(
-              fontSize: 100,
-            ),
-          ),
-          interval: Duration(milliseconds: 100),
-          onFinished: () {
-            print('Timer is done!');
+        child: Column(
+          children: <Widget>[
+            Countdown(
+              controller: _controller,
+              seconds: 5,
+              build: (_, double time) => Text(
+                time.toString(),
+                style: TextStyle(
+                  fontSize: 100,
+                ),
+              ),
+              interval: Duration(milliseconds: 100),
+              onFinished: () {
+                print('Timer is done!');
 
-            setState(() {
-              _isRestart = true;
-            });
-          },
+                setState(() {
+                  _isRestart = true;
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text('Set new Value'),
+              onPressed: () {
+                print('show Dialog');
+                Scaffold.of(context).showBottomSheet(
+                  (BuildContext context) {
+                    return Container(
+                      height: 300,
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            const Text('Enter new timer value'),
+                            ElevatedButton(
+                              child: Text('Apply'),
+                              onPressed: () {
+                                print('New Button');
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(buttonIcon),
         onPressed: () {
-          final isCompleted = controller.isCompleted;
-          isCompleted ? controller.restart() : controller.pause();
+          final isCompleted = _controller.isCompleted;
+          isCompleted ? _controller.restart() : _controller.pause();
 
           if (!isCompleted && !_isPause) {
-            controller.resume();
+            _controller.resume();
           }
 
           if (isCompleted) {

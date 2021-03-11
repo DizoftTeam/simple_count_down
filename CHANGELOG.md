@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.0.5] - Nov 5th, 2020
+
+- Fixed issues
+  - #[10](https://github.com/DizoftTeam/simple_count_down/issues/10) : Add reinitialise method
+
 ## [1.0.4] - June 26th, 2020
 
 - Pull Requests
