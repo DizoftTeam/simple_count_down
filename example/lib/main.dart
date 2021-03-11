@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
-
 import 'package:timer_count_down/timer_count_down.dart';
 
 void main() => runApp(MyApp());
@@ -32,9 +31,10 @@ class MyHomePage extends StatefulWidget {
   ///
   final String title;
 
+  /// Home page
   MyHomePage({
-    Key key,
-    this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class MyHomePage extends StatefulWidget {
 /// Page state
 ///
 class _MyHomePageState extends State<MyHomePage> {
-  final CountdownController controller = CountdownController();
+  final CountdownController _controller = new CountdownController();
 
   bool _isPause = true;
   bool _isRestart = false;
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Countdown(
-          controller: controller,
+          controller: _controller,
           seconds: 5,
           build: (_, double time) => Text(
             time.toString(),
@@ -85,22 +85,20 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(buttonIcon),
         onPressed: () {
-          final isCompleted = controller.isCompleted;
-          isCompleted ? controller.restart() : controller.pause();
+          final bool isCompleted = _controller.isCompleted!;
+          isCompleted ? _controller.restart() : _controller.pause();
 
           if (!isCompleted && !_isPause) {
-            controller.resume();
+            _controller.resume();
           }
 
-          if (isCompleted) {
-            setState(() {
+          setState(() {
+            if (isCompleted) {
               _isRestart = false;
-            });
-          } else {
-            setState(() {
+            } else {
               _isPause = !_isPause;
-            });
-          }
+            }
+          });
         },
       ),
     );
