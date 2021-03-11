@@ -4,18 +4,20 @@ import 'package:flutter/widgets.dart';
 /// Controller for Count down
 ///
 class CountdownController {
-  // Called when called `pause` method
-  VoidCallback onPause;
+  /// Called when called `pause` method
+  VoidCallback? onPause;
 
-  // Called when called `resume` method
-  VoidCallback onResume;
+  /// Called when called `resume` method
+  VoidCallback? onResume;
 
-  // Called when restarting the timer
-  VoidCallback onRestart;
+  /// Called when restarting the timer
+  VoidCallback? onRestart;
 
   ///
-  /// Checks if the timer is running and enables you to take actions according to that.
-  /// if the timer is still active, `isCompleted` returns `false` and vice versa.
+  /// Checks if the timer is running and enables you to take actions
+  /// according to that. if the timer is still active,
+  ///
+  /// `isCompleted` returns `false` and vice versa.
   ///
   /// for example:
   ///
@@ -23,7 +25,7 @@ class CountdownController {
   ///   _controller.isCompleted ? _controller.restart() : _controller.pause();
   /// ```
   ///
-  bool isCompleted;
+  bool? isCompleted;
 
   ///
   /// Constructor
@@ -35,10 +37,11 @@ class CountdownController {
   ///
   pause() {
     if (this.onPause != null) {
-      this.onPause();
+      this.onPause!();
     }
   }
 
+  /// Set onPause callback
   setOnPause(VoidCallback onPause) {
     this.onPause = onPause;
   }
@@ -48,10 +51,11 @@ class CountdownController {
   ///
   resume() {
     if (this.onResume != null) {
-      this.onResume();
+      this.onResume!();
     }
   }
 
+  /// Set onResume callback
   setOnResume(VoidCallback onResume) {
     this.onResume = onResume;
   }
@@ -61,10 +65,11 @@ class CountdownController {
   ///
   restart() {
     if (this.onRestart != null) {
-      this.onRestart();
+      this.onRestart!();
     }
   }
 
+  /// set onRestart callback
   setOnRestart(VoidCallback onRestart) {
     this.onRestart = onRestart;
   }

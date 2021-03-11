@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.0.0] - March 12th, 2021
+
+- Fixes issues
+  - [#13](https://github.com/DizoftTeam/simple_count_down/issues/13) : null safety
+
+Update `dart` to `1.12` to null safety
 ## [1.0.4] - June 26th, 2020
 
 - Pull Requests
