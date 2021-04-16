@@ -124,7 +124,7 @@ class _CountdownState extends State<Countdown> {
       _timer = Timer.periodic(
         widget.interval,
         (Timer timer) {
-          if (_currentMicroSeconds == 0) {
+          if (_currentMicroSeconds <= 0) {
             timer.cancel();
 
             if (widget.onFinished != null) {
