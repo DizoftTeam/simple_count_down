@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [2.0.1] - April 16th, 2021
+
+- Pull Requests
+  - [#17](https://github.com/DizoftTeam/simple_count_down/pull/17) : Bug fix for negative looping
+
 ## [2.0.0] - March 12th, 2021
 
 - Fixes issues
