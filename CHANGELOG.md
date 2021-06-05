@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [2.1.0+1] - June 5th, 2021
+
+- Small fix preview gif in `README.md`
 ## [2.1.0] - June 5th, 2021
 
 - Fixed issues

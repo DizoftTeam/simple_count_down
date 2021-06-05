@@ -8,7 +8,7 @@ A highly customizable countdown widget for [Flutter](https://flutter.dev/), with
 
 ## Preview
 
-<img src="./assets/preview.gif" width="320" height="640" />
+<img src="https://raw.githubusercontent.com/DizoftTeam/simple_count_down/master/assets/preview.gif" width="320" height="640" />
 
 ## How to use
 
