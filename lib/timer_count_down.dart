@@ -54,22 +54,13 @@ class _CountdownState extends State<Countdown> {
   void initState() {
     _currentMicroSeconds = widget.seconds * _secondsFactor;
 
+    widget.controller?.setOnStart(_startTimer);
     widget.controller?.setOnPause(_onTimerPaused);
     widget.controller?.setOnResume(_onTimerResumed);
     widget.controller?.setOnRestart(_onTimerRestart);
     widget.controller?.isCompleted = false;
 
-    _startTimer();
-
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.build(
-      context,
-      _currentMicroSeconds / _secondsFactor,
-    );
   }
 
   @override
@@ -79,6 +70,14 @@ class _CountdownState extends State<Countdown> {
     }
 
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.build(
+      context,
+      _currentMicroSeconds / _secondsFactor,
+    );
   }
 
   ///

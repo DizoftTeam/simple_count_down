@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.1.0] - June 5th, 2021
+
+- Fixed issues
+  - [#20](https://github.com/DizoftTeam/simple_count_down/issues/20) : Remove auto start timer
+  - [#15](https://github.com/DizoftTeam/simple_count_down/issues/15) : Add screenshot to README
+
 ## [2.0.1] - April 16th, 2021
 
 - Pull Requests

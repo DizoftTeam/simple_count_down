@@ -45,17 +45,11 @@ class MyHomePage extends StatefulWidget {
 /// Page state
 ///
 class _MyHomePageState extends State<MyHomePage> {
+  // Controller
   final CountdownController _controller = new CountdownController();
-
-  bool _isPause = true;
-  bool _isRestart = false;
 
   @override
   Widget build(BuildContext context) {
-    final IconData buttonIcon = _isRestart
-        ? Icons.refresh
-        : (_isPause ? Icons.pause : Icons.play_arrow);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -63,43 +57,68 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: Countdown(
-          controller: _controller,
-          seconds: 5,
-          build: (_, double time) => Text(
-            time.toString(),
-            style: TextStyle(
-              fontSize: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  // Start
+                  ElevatedButton(
+                    child: Text('Start'),
+                    onPressed: () {
+                      _controller.start();
+                    },
+                  ),
+                  // Pause
+                  ElevatedButton(
+                    child: Text('Pause'),
+                    onPressed: () {
+                      _controller.pause();
+                    },
+                  ),
+                  // Resume
+                  ElevatedButton(
+                    child: Text('Resume'),
+                    onPressed: () {
+                      _controller.resume();
+                    },
+                  ),
+                  // Stop
+                  ElevatedButton(
+                    child: Text('Restart'),
+                    onPressed: () {
+                      _controller.restart();
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          interval: Duration(milliseconds: 100),
-          onFinished: () {
-            print('Timer is done!');
-
-            setState(() {
-              _isRestart = true;
-            });
-          },
+            Countdown(
+              controller: _controller,
+              seconds: 5,
+              build: (_, double time) => Text(
+                time.toString(),
+                style: TextStyle(
+                  fontSize: 100,
+                ),
+              ),
+              interval: Duration(milliseconds: 100),
+              onFinished: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Timer is done!'),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(buttonIcon),
-        onPressed: () {
-          final bool isCompleted = _controller.isCompleted!;
-          isCompleted ? _controller.restart() : _controller.pause();
-
-          if (!isCompleted && !_isPause) {
-            _controller.resume();
-          }
-
-          setState(() {
-            if (isCompleted) {
-              _isRestart = false;
-            } else {
-              _isPause = !_isPause;
-            }
-          });
-        },
       ),
     );
   }

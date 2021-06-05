@@ -6,6 +6,10 @@
 
 A highly customizable countdown widget for [Flutter](https://flutter.dev/), with support for custom styling, intervals, and onFinished callbacks.
 
+## Preview
+
+<img src="./assets/preview.gif" width="320" height="640" />
+
 ## How to use
 
 Simple example below. For full example check `example` folder.
