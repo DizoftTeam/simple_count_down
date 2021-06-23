@@ -46,7 +46,8 @@ class MyHomePage extends StatefulWidget {
 ///
 class _MyHomePageState extends State<MyHomePage> {
   // Controller
-  final CountdownController _controller = new CountdownController();
+  final CountdownController _controller =
+      new CountdownController(autoStart: true);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Countdown(
-              controller: _controller,
+              // controller: _controller,
               seconds: 5,
               build: (_, double time) => Text(
                 time.toString(),
