@@ -1,8 +1,17 @@
 # CHANGELOG
 
+## [2.2.0] - June 23th, 2021
+
+- Pull Requests
+  - [#24](https://github.com/DizoftTeam/simple_count_down/pull/24) : support auto start controller
+
+- Fixed issues
+  - [#23](https://github.com/DizoftTeam/simple_count_down/issues/23) : Timer not restarting itself
+
 ## [2.1.0+1] - June 5th, 2021
 
 - Small fix preview gif in `README.md`
+
 ## [2.1.0] - June 5th, 2021
 
 - Fixed issues
