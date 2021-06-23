@@ -60,6 +60,10 @@ class _CountdownState extends State<Countdown> {
     widget.controller?.setOnRestart(_onTimerRestart);
     widget.controller?.isCompleted = false;
 
+    if (widget.controller == null || widget.controller!.autoStart == true) {
+      _startTimer();
+    }
+
     super.initState();
   }
 

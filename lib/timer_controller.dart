@@ -30,10 +30,13 @@ class CountdownController {
   ///
   bool? isCompleted;
 
+  /// if timer auto start.
+  final bool autoStart;
+
   ///
   /// Constructor
   ///
-  CountdownController();
+  CountdownController({this.autoStart = false});
 
   ///
   /// Run timer
