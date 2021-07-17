@@ -1,5 +1,6 @@
 # Simple Count Down
 
+[![pub](https://img.shields.io/pub/v/timer_count_down?logo=dart)](https://pub.dev/packages/timer_count_down)
 ![](https://badges.fyi/github/latest-tag/DizoftTeam/simple_count_down)
 ![](https://badges.fyi/github/stars/DizoftTeam/simple_count_down)
 ![](https://badges.fyi/github/license/DizoftTeam/simple_count_down)
@@ -46,5 +47,7 @@ class MyWidget extends StatelessWidget {
   }
 }
 ```
+## Example
 
-For pause, restart and resume you need to use `CountdownController`. For example check [example as is](./example)
+For pause, restart and resume you need to use `CountdownController`. For example check [example](./example) folder.
+Check out the example project in the `example` folder. Otherwise, keep reading and keep going!
