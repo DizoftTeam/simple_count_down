@@ -30,7 +30,7 @@ $ flutter pub get
 
 ## How to use
 
-Simple example below. For full example check `example` folder.
+Simple example for the usage of the package is shown below.
 
 ```dart
 class MyWidget extends StatelessWidget {
@@ -49,5 +49,5 @@ class MyWidget extends StatelessWidget {
 ```
 ## Example
 
-For pause, restart and resume you need to use `CountdownController`. For example check [example](./example) folder.
-Check out the example project in the `example` folder. Otherwise, keep reading and keep going!
+For pause, restart and resume you need to use `CountdownController`.  
+For an example of using the package, please check the [example](./example) folder. Otherwise, keep reading and keep going!
