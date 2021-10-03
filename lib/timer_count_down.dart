@@ -68,6 +68,13 @@ class _CountdownState extends State<Countdown> {
   }
 
   @override
+  void didUpdateWidget(Countdown oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.seconds != widget.seconds)
+      _currentMicroSeconds = widget.seconds * _secondsFactor;
+  }
+
+  @override
   void dispose() {
     if (_timer?.isActive == true) {
       _timer?.cancel();
