@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2.2.1] - December 12th, 2021
+
+- Pull Requests
+  - [#32](https://github.com/DizoftTeam/simple_count_down/pull/32) : Added control of the end timer event.
+
+- Fixed issues
+  - [#30](https://github.com/DizoftTeam/simple_count_down/issues/30) : If the countdown timer is stopped when it has reached zero seconds and event onFinished has not yet been executed
+
 ## [2.2.0] - June 23th, 2021
 
 - Pull Requests

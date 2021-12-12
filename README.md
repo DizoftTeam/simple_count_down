@@ -19,8 +19,8 @@ A highly customizable countdown widget for [Flutter](https://flutter.dev/), with
   dependencies:
     flutter:
       sdk: flutter
-      
-    timer_count_down: ^2.2.0
+
+    timer_count_down: ^2.2.1
 ```
 Run this in your terminal or click on `pub get`
 
@@ -49,5 +49,5 @@ class MyWidget extends StatelessWidget {
 ```
 ## Example
 
-For pause, restart and resume you need to use `CountdownController`.  
+For pause, restart and resume you need to use `CountdownController`.
 For an example of using the package, please check the [example](./example) folder. Otherwise, keep reading and keep going!
