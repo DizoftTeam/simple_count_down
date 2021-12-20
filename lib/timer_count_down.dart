@@ -143,10 +143,11 @@ class _CountdownState extends State<Countdown> {
 
             if (widget.onFinished != null) {
               widget.onFinished!();
-            }
-            _onFinishedExecuted = true;
+              this._onFinishedExecuted = true;
+            }            
             widget.controller?.isCompleted = true;
           } else {
+            this._onFinishedExecuted = false;
             setState(() {
               _currentMicroSeconds =
                   _currentMicroSeconds - widget.interval.inMicroseconds;
@@ -157,8 +158,8 @@ class _CountdownState extends State<Countdown> {
     } else if (!this._onFinishedExecuted) {
       if (widget.onFinished != null) {
         widget.onFinished!();
-      }
-      this._onFinishedExecuted = true;
+        this._onFinishedExecuted = true;
+      }      
       widget.controller?.isCompleted = true;
     }
   }
