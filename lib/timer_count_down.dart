@@ -46,7 +46,7 @@ class _CountdownState extends State<Countdown> {
 
   // Timer
   Timer? _timer;
-  
+
   /// Internal control to indicate if the onFinished method was executed
   bool _onFinishedExecuted = false;
 
@@ -114,14 +114,16 @@ class _CountdownState extends State<Countdown> {
   /// Then timer restarted
   ///
   void _onTimerRestart() {
-    widget.controller?.isCompleted = false;    
+    widget.controller?.isCompleted = false;
     _onFinishedExecuted = false;
 
-    setState(() {
-      _currentMicroSeconds = widget.seconds * _secondsFactor;
-    });
+    if (mounted) {
+      setState(() {
+        _currentMicroSeconds = widget.seconds * _secondsFactor;
+      });
 
-    _startTimer();
+      _startTimer();
+    }
   }
 
   ///
@@ -144,7 +146,7 @@ class _CountdownState extends State<Countdown> {
             if (widget.onFinished != null) {
               widget.onFinished!();
               this._onFinishedExecuted = true;
-            }            
+            }
             widget.controller?.isCompleted = true;
           } else {
             this._onFinishedExecuted = false;
@@ -159,7 +161,7 @@ class _CountdownState extends State<Countdown> {
       if (widget.onFinished != null) {
         widget.onFinished!();
         this._onFinishedExecuted = true;
-      }      
+      }
       widget.controller?.isCompleted = true;
     }
   }
