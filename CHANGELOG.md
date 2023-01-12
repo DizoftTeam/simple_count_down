@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2.2.2] - Jan 12th, 2023
+
+- Pull Requests
+  - [#36](https://github.com/DizoftTeam/simple_count_down/pull/36) : fix: fixed the bug that did not restart by @ailtondvieira
+
+- Fixed issues
+  - [34](https://github.com/DizoftTeam/simple_count_down/issues/34) : Countdown doesn't restart when I call restart()
+
+- Small fix of Android example project
+
 ## [2.2.0] - June 23th, 2021
 
 - Pull Requests
