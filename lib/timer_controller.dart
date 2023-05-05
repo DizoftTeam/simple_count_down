@@ -29,6 +29,8 @@ class CountdownController {
   /// ```
   ///
   bool? isCompleted;
+  
+  String state = 'paused';
 
   /// if timer auto start.
   final bool autoStart;
@@ -42,6 +44,7 @@ class CountdownController {
   /// Run timer
   ///
   start() {
+    state = 'started';
     if (this.onStart != null) {
       this.onStart!();
     }
@@ -56,6 +59,7 @@ class CountdownController {
   /// Set timer in pause
   ///
   pause() {
+    state = 'paused';
     if (this.onPause != null) {
       this.onPause!();
     }
@@ -70,6 +74,7 @@ class CountdownController {
   /// Resume from pause
   ///
   resume() {
+    state = 'resumed';
     if (this.onResume != null) {
       this.onResume!();
     }
@@ -84,6 +89,7 @@ class CountdownController {
   /// Restart timer from cold
   ///
   restart() {
+    state = 'started';
     if (this.onRestart != null) {
       this.onRestart!();
     }
